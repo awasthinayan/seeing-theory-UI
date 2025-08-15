@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seeing Theory – Mixed Size Centered Circles</title>
+  <script src="https://unpkg.com/d3@7"></script>
+  <style>
+    :root{
+      --bg:#2b2a3d;
+      --fg:#ffffff;
+      --nav:#16162199;
+      --btn:#ffffff;
+      --btnText:#121212;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial;
+      color:var(--fg); background:var(--bg); overflow:auto;
+    }
+
+    .nav{ position:fixed; inset:0 0 auto 0; height:64px; display:flex; align-items:center; justify-content:space-between; padding:0 28px; background:var(--nav); backdrop-filter: blur(6px); z-index:10; }
+    .nav .left, .nav .right{ display:flex; gap:24px; align-items:center; }
+    .nav a{ color:var(--fg); text-decoration:none; font-weight:500; opacity:.95; }
+    .nav a:hover{ opacity:1; text-decoration:underline; }
+    .lang{ appearance:none; background:transparent; border:1px solid #ffffff33; color:#fff; padding:6px 10px; border-radius:8px; }
+
+    .hero {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh; /* Let it grow if content is taller */
+  display: grid;
+  place-items: center;
+  text-align: center;
+  /* overflow:hidden;  REMOVE this */
+}
+    .hero h1{ font-size: clamp(32px, 6vw, 56px); margin:0 0 10px; font-weight:700; }
+    .hero p{ font-size: clamp(14px, 2.2vw, 18px); opacity:.9; margin:0 0 24px; }
+    .cta{ display:inline-block; padding:14px 34px; background:var(--btn); color:var(--btnText); border:0; border-radius:999px; font-weight:650; cursor:pointer; box-shadow:0 8px 30px #00000040; transition: transform .15s ease, box-shadow .2s ease; }
+    .cta:hover{ transform: translateY(-1px); box-shadow:0 14px 34px #00000055; }
+
+    #dots-layer{ position:absolute; inset:0; z-index:0;}
+    .footer{ position:fixed; bottom:10px; left:50%; transform:translateX(-50%); font-size:12px; opacity:.65; }
+    @media (max-width:640px){ .nav{ padding:0 16px; } .nav .left{ gap:14px; } }
+    .def{
+        max-width: 800px; margin: 20px auto; padding: 20px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; font-size: 16px; line-height: 1.6; color: var(--fg);
+    }
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <div class="left">
+      <a href="#">Home</a>
+      <a href="#chapters">Chapters</a>
+      <a href="#about">About</a>
+      <a href="#book">Book</a>
+    </div>
+    <div class="right">
+      <select class="lang" aria-label="Language">
+        <option>English</option>
+        <option>हिन्दी</option>
+      </select>
+    </div>
+  </div>
+
+  <main class="hero">
+    <svg id="dots-layer" preserveAspectRatio="xMidYMid slice"></svg>
+    <div style="position:relative; z-index:1; margin-top:-40px">
+      <h1>You are visting the best site</h1>
+      <p>Welcome to the world of probability and statistics.</p>
+      <button class="cta" id="startBtn">Start</button>
+      <p class="def">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum id molestias reprehenderit quis aliquam. Ut, cupiditate nam. Adipisci, animi, optio consequuntur quae corrupti odit ipsum maxime deserunt explicabo, delectus id ratione nostrum distinctio facere itaque ex aperiam? Repudiandae natus cupiditate sapiente quae nam! Nobis rerum nam asperiores qui maiores. Vero rerum nulla, alias iusto doloribus, asperiores error velit amet recusandae repudiandae dolor minus ex vel animi blanditiis doloremque saepe odio accusantium esse temporibus nostrum illo rem officiis exercitationem. Eum cupiditate deleniti porro dolorum quaerat, expedita minima consequuntur earum saepe, repudiandae autem quos minus corporis ratione quis voluptates necessitatibus sapiente reprehenderit molestiae commodi at enim architecto tempore sed? Dolor minus in tempore ad dignissimos minima repudiandae voluptatibus, consequatur ut! Facere nihil incidunt blanditiis, aliquam nam sit beatae optio veritatis repellat nobis architecto tenetur dolore iste voluptatum, exercitationem voluptates consequuntur molestiae nulla harum quisquam commodi praesentium alias. Et reprehenderit nisi, dolore est corporis perspiciatis culpa inventore at ducimus eius quos totam consequatur dignissimos placeat illo deleniti animi modi maxime nesciunt magnam nulla minima officia quo dicta! Dicta officiis nihil a odit repudiandae officia quos quo, quibusdam blanditiis ex reprehenderit quae facilis sit. Consectetur, repellendus iure magnam dolorum dicta sint ad dolore ea. lorem
+      </p>
+      <p class="def"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat dolorem cumque distinctio ullam! Quibusdam eos recusandae id ipsam rerum nesciunt rem obcaecati earum quo delectus atque, quas officiis facere eligendi. Iusto assumenda laborum aspernatur suscipit architecto accusamus eius commodi debitis, ullam quisquam cum tempora ducimus, soluta doloremque numquam quod cumque magni enim nesciunt nostrum tempore inventore vero! Asperiores quam iusto ad nobis et velit culpa quas eligendi exercitationem pariatur? Quidem veritatis, sunt sapiente, suscipit ex aspernatur quaerat id iusto facilis accusamus ea eius aperiam harum? Laborum quisquam iusto, omnis ad laboriosam aspernatur recusandae, maiores quae eligendi quibusdam modi est deserunt itaque voluptates placeat culpa ab illum maxime, beatae praesentium earum voluptatum. Laudantium quia nisi hic repellat alias minima non, suscipit dignissimos numquam explicabo, temporibus eveniet! Iste, ut voluptatum eum velit quisquam dolorem magnam consequuntur odit itaque fugit? Sit corrupti ad esse, perferendis possimus rerum vero, neque voluptas dolore excepturi nesciunt deserunt soluta est similique exercitationem architecto veniam nisi? Cum consequatur reiciendis debitis animi, ratione ea aperiam, unde hic molestias vero harum ex et quia earum incidunt. Alias numquam nemo ratione quasi a nisi sint illo porro eos et. Deleniti, ullam? Voluptas repellendus voluptatem explicabo sed hic minus in laboriosam quisquam?</p>
+    </div>
+  </main>
+
+  <div class="footer">Demo clone. Animated with D3.js</div>
+
+<script>
+  const palette = [
+    '#f94144','#f3722c','#f9844a','#f9c74f',
+    '#90be6d','#43aa8b','#4cc9f0','#577590',
+    '#ff6f91','#ffc75f','#6a4c93'
+  ];
+  function rand(min,max){ return Math.random()*(max-min)+min; }
+  function mush(t, freq=1, phase=0){
+    return Math.sin((t+phase)*freq) * 0.6 + Math.sin((t+phase)*0.7*freq)*0.4; 
+  }
+
+  const svg = d3.select('#dots-layer');
+  let dots = [];
+  let mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
+
+  function build(){
+    svg.selectAll('*').remove();
+    const g = svg.append('g');
+    const { width:w, height:h } = svg.node().getBoundingClientRect();
+    svg.attr('viewBox', `0 0 ${w} ${h}`);
+
+
+
+    const cx = w / 2;
+    const cy = h / 2;
+    const N = 150; // total number of particles
+
+    dots = [];
+    let placed = 0;
+    let ring = 0;
+    const rSmall = 10;
+    const rMedium = 18;
+
+    while (placed < N) {
+      let rCircle = (Math.random() > 0.5) ? rSmall : rMedium;
+      if (ring === 0) {
+        dots.push({ x: cx, y: cy, baseX: cx, baseY: cy, r: rCircle, c: palette[placed % palette.length], phase: rand(0, Math.PI * 2) });
+        placed++;
+      } else {
+        const radius = ring * (rMedium * 2); // ring spacing based on largest radius
+        const circumference = 2 * Math.PI * radius;
+        const avgDiameter = (rSmall + rMedium); // average size for packing
+        const count = Math.floor(circumference / (avgDiameter * 2));
+        for (let j = 0; j < count && placed < N; j++) {
+          rCircle = (Math.random() > 0.5) ? rSmall : rMedium;
+          const angle = (j / count) * 2 * Math.PI;
+          const x = cx + Math.cos(angle) * radius;
+          const y = cy + Math.sin(angle) * radius;
+          dots.push({ x, y, baseX: x, baseY: y, r: rCircle, c: palette[placed % palette.length], phase: rand(0, Math.PI * 2) });
+          placed++;
+        }
+      }
+      ring++;
+    }
+
+    g.selectAll('circle').data(dots).enter()
+      .append('circle')
+      .attr('cx', d=>d.x)
+      .attr('cy', d=>d.y)
+      .attr('r', d=>d.r)
+      .attr('fill', d=>d.c)
+      .attr('opacity', 0.95);
+  }
+
+  let amp = 10, growth = 0.12, t0 = performance.now();
+  const pushRadius = 200;
+
+  function tick(now){
+    const t = (now - t0)/1000;
+    svg.selectAll('circle').each(function(d){
+      let wob = amp * mush(t + d.phase, 1.2, d.phase);
+      let wobY = amp * 1.1 * mush(t + d.phase, 0.5, d.phase);
+
+      let dx = d.x - mouse.x;
+      let dy = d.y - mouse.y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+
+      if (dist < pushRadius) {
+        let force = (pushRadius - dist) / pushRadius;
+        let angle = Math.atan2(dy, dx);
+        d.x += Math.cos(angle) * force * 8;
+        d.y += Math.sin(angle) * force * 8;
+      } else {
+        d.x += (d.baseX - d.x) * 0.05;
+        d.y += (d.baseY - d.y) * 0.05;
+      }
+
+      let rPulse = d.r * (1 + growth * Math.sin(t*0.8 + d.phase));
+
+      d3.select(this)
+        .attr('cx', d.x + wob)
+        .attr('cy', d.y + wobY)
+        .attr('r', rPulse);
+    });
+    requestAnimationFrame(tick);
+  }
+
+  const startBtn = document.getElementById('startBtn');
+  startBtn.addEventListener('mouseenter', ()=>{ amp = 16; growth = 0.18; });
+  startBtn.addEventListener('mouseleave', ()=>{ amp = 10; growth = 0.12; });
+
+  window.addEventListener("mousemove", e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  const ro = new ResizeObserver(() => build());
+  ro.observe(document.querySelector('.hero'));
+
+
+  build();
+  requestAnimationFrame(tick);
+
+  startBtn.addEventListener('click', () => {
+    startBtn.textContent = 'Loading…';
+    startBtn.disabled = true;
+    setTimeout(()=>{
+      startBtn.textContent = 'Start';
+      startBtn.disabled = false;
+      alert('Hook this button to your Chapters page.');
+    }, 900);
+  });
+</script>
+
+</body>
+</html>
